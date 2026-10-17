@@ -1,0 +1,9 @@
+# runtime — regenerated automatically by applications/scripts
+.config/rofi/.current_wallpaper
+.config/spicetify/Backup/
+.config/spicetify/Extracted/
+.config/mpv/scripts/uosc/bin/
+
+# editor / old backup junk
+*.bak
+*copy*.conf
