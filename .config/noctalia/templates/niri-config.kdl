@@ -3,7 +3,7 @@
 // Source of truth: ~/.config/noctalia/templates/niri-config.kdl
 // (rendered by Noctalia app-theming; border colors follow the wallpaper palette)
 //
-// Ported from JaKooLit Hyprland dots (UserKeybinds.conf / Keybinds.conf).
+// Keybinds migrated from the previous Hyprland setup (UserKeybinds.conf).
 // Base: niri v26.04 default binds, adjusted for Noctalia IPC + personal keys.
 
 ///////////////////////////// Autostart /////////////////////////////
@@ -112,7 +112,6 @@ binds {
     // keycode 183/`<I183>` is unassigned here — and Scroll_Lock is verified
     // mapped: `key <SCLK> { [ Scroll_Lock ] };`).
     Scroll_Lock { spawn-sh "noctalia msg panel-toggle launcher"; }
-    Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }      // was RofiSearch in Hyprland -> Mod+Alt+S
     Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }              // displaced default consume-window-into-column (covered by Mod+BracketLeft)
     Alt+Tab { spawn-sh "noctalia msg window-switcher hold"; }
     XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
@@ -121,18 +120,12 @@ binds {
     XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
     XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
 
-    // ── Ported personal binds (UserKeybinds.conf) ──
+    // ── Personal binds (migrated from the Hyprland overlay) ──
     Mod+Return { spawn "kitty"; }                                       // launch terminal
     Mod+T { spawn "thunar"; }                                           // files (niri default terminal bind replaced; terminal = Mod+Return)
     Mod+V { spawn "code" "--disable-gpu"; }                             // editor (default toggle-window-floating -> Mod+Ctrl+V)
     Mod+C { spawn "firefox"; }                                          // browser (default center-column -> Mod+Shift+C)
-    Mod+Shift+O { spawn "/home/caur/.config/scripts/ZshChangeTheme.sh"; }
-    Mod+Shift+I { spawn "/home/caur/.config/scripts/mpd.sh"; } // default move-workspace-up remains on Mod+Shift+Page_Up
-    Alt+Space { spawn "/home/caur/.config/scripts/movie.sh"; }
-    Mod+Alt+E { spawn "/home/caur/.config/scripts/RofiEmoji.sh"; }
-    Mod+Alt+S { spawn "/home/caur/.config/scripts/RofiSearch.sh"; }
     Mod+Alt+V { spawn-sh "noctalia msg panel-toggle clipboard"; }        // native Noctalia clipboard (rofi ClipManager retired, still in frondier/scripts)
-    Mod+Shift+M { spawn "/home/caur/.config/scripts/RofiBeats.sh"; }
     Mod+W { spawn-sh "noctalia msg wallpaper-random"; }                 // native IPC (old WallpaperSelect.sh restarted waybar via WallustSwww); picker lives in Noctalia Settings
     Ctrl+Alt+W { spawn-sh "noctalia msg wallpaper-random"; }            // same action, kept for muscle memory
     Ctrl+Alt+P { spawn "/home/caur/.config/scripts/Wlogout.sh"; }
@@ -149,22 +142,22 @@ binds {
     XF86AudioNext { spawn-sh "playerctl next"; }
     Mod+O { toggle-overview; }
     Mod+Q { close-window; }
-    Mod+Left { focus-column-left; }
-    Mod+Down { focus-window-down; }
-    Mod+Up { focus-window-up; }
-    Mod+Right { focus-column-right; }
-    Mod+H { focus-column-left; }
-    Mod+J { focus-window-down; }
-    Mod+K { focus-window-up; }
-    Mod+L { focus-column-right; }
-    Mod+Ctrl+Left { move-column-left; }
-    Mod+Ctrl+Down { move-window-down; }
-    Mod+Ctrl+Up { move-window-up; }
-    Mod+Ctrl+Right { move-column-right; }
-    Mod+Ctrl+H { move-column-left; }
-    Mod+Ctrl+J { move-window-down; }
-    Mod+Ctrl+K { move-window-up; }
-    Mod+Ctrl+L { move-column-right; }
+    Mod+Left { focus-column-or-monitor-left; }
+    Mod+Down { focus-window-or-workspace-down; }
+    Mod+Up { focus-window-or-workspace-up; }
+    Mod+Right { focus-column-or-monitor-right; }
+    Mod+H { focus-column-or-monitor-left; }
+    Mod+J { focus-window-or-workspace-down; }
+    Mod+K { focus-window-or-workspace-up; }
+    Mod+L { focus-column-or-monitor-right; }
+    Mod+Ctrl+Left { move-column-left-or-to-monitor-left; }
+    Mod+Ctrl+Down { move-window-down-or-to-workspace-down; }
+    Mod+Ctrl+Up { move-window-up-or-to-workspace-up; }
+    Mod+Ctrl+Right { move-column-right-or-to-monitor-right; }
+    Mod+Ctrl+H { move-column-left-or-to-monitor-left; }
+    Mod+Ctrl+J { move-window-down-or-to-workspace-down; }
+    Mod+Ctrl+K { move-window-up-or-to-workspace-up; }
+    Mod+Ctrl+L { move-column-right-or-to-monitor-right; }
     Mod+Home { focus-column-first; }
     Mod+End { focus-column-last; }
     Mod+Ctrl+Home { move-column-to-first; }
@@ -200,14 +193,14 @@ binds {
     Mod+WheelScrollUp { focus-workspace-up; }
     Mod+Ctrl+WheelScrollDown { move-column-to-workspace-down; }
     Mod+Ctrl+WheelScrollUp { move-column-to-workspace-up; }
-    Mod+WheelScrollRight { focus-column-right; }
-    Mod+WheelScrollLeft { focus-column-left; }
-    Mod+Ctrl+WheelScrollRight { move-column-right; }
-    Mod+Ctrl+WheelScrollLeft { move-column-left; }
-    Mod+Shift+WheelScrollDown { focus-column-right; }
-    Mod+Shift+WheelScrollUp { focus-column-left; }
-    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-    Mod+Ctrl+Shift+WheelScrollUp { move-column-left; }
+    Mod+WheelScrollRight { focus-column-or-monitor-right; }
+    Mod+WheelScrollLeft { focus-column-or-monitor-left; }
+    Mod+Ctrl+WheelScrollRight { move-column-right-or-to-monitor-right; }
+    Mod+Ctrl+WheelScrollLeft { move-column-left-or-to-monitor-left; }
+    Mod+Shift+WheelScrollDown { focus-column-or-monitor-right; }
+    Mod+Shift+WheelScrollUp { focus-column-or-monitor-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right-or-to-monitor-right; }
+    Mod+Ctrl+Shift+WheelScrollUp { move-column-left-or-to-monitor-left; }
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
@@ -263,4 +256,5 @@ binds {
 // Mod+H                         KeyHints.sh                     (documents Hyprland keybinds — obsolete here)
 // Mod+E                         QuickEdit.sh                    (edits Hyprland config)
 // Super (release) / Mod+D       rofi drun launcher              (Noctalia launcher = Mod+Space / Super-tap via keyd)
+// Mod+Alt+E/S/V, Mod+Shift+M/O/I, Alt+Space   rofi-based menus (retired) (emoji/search/clipboard/beats/mpd/movie/zsh-theme) — retired with rofi removal
 // Mod+Shift+W                   WallpaperEffects.sh             (imagemagick + wallust pipeline — Hyprland-specific; random wallpaper = Mod+W)
