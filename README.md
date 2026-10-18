@@ -65,13 +65,6 @@ Fonts: **Inter** and a **Nerd Font**.
 Session-level plumbing (env import, portals, XDG autostart) is handled by
 `niri-session` + the packaged `niri-portals.conf` — nothing to configure.
 
-## Keybinds (summary)
-
-- `Super tap` / `Mod+Space` — app launcher · `Mod+S` — control center · `Mod+Comma` — settings
-- `Mod+Return` terminal · `Mod+T` files · `Mod+V` editor · `Mod+C` browser · `Mod+W` random wallpaper
-- `Mod+Alt+V` clipboard panel · `Ctrl+Alt+L` / `Super+Alt+L` lock · `Ctrl+Alt+P` wlogout
-- `Mod+O` overview · `Print` screenshot · full default niri navigation (see the template)
-
 ## Usage
 
 ```bash
@@ -82,18 +75,3 @@ cd ~/programs/linux/frondier
 ```
 
 `install.sh` never overwrites existing real files/directories — those are reported as `SKIP`.
-
-## Notes
-
-- **kitty colors are static** (last `wallust` run). To refresh them from the current
-  wallpaper: `wallust run <wallpaper-image>` — or enable Noctalia's built-in kitty
-  template for fully dynamic terminal colors.
-- `.config/niri/config.kdl` is generated and gitignored — **edit the template instead**.
-- Runtime state (rofi `.current_wallpaper`-style files, caches) is gitignored.
-- History: this setup previously ran Hyprland + JaKooLit dots + waybar. That session was
-  retired on 2026-10-18; the old overlay lives in git history (`hypr-user/` was removed
-  in the de-JaKooLit pass).
-
-## To-do (repo owner)
-
-- [ ] `git push` after committing the migration (remote `origin` already configured).
