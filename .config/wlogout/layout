@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "$HOME/.config/hypr/scripts/LockScreen.sh",
+    "action" : "noctalia msg screen-lock",
     "text" : "Lock",
     "keybind" : "l"
 }
@@ -18,7 +18,7 @@
 }
 {
     "label" : "logout",
-    "action" : "loginctl kill-session $XDG_SESSION_ID",
+    "action" : "niri msg action quit",
     "text" : "Logout",
     "keybind" : "e"
 }
