@@ -1,0 +1,6 @@
+# frondier — Noctalia app-theming: generate the niri config from the wallpaper palette.
+# NOTE: ~/.config/niri/config.kdl is GENERATED — edit the template file instead.
+
+[theme.templates.user.niri]
+input_path = "/home/caur/.config/noctalia/templates/niri-config.kdl"
+output_path = "/home/caur/.config/niri/config.kdl"

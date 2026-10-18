@@ -1,0 +1,10 @@
+# frondier — theme: derive palette from the current wallpaper (Material 3),
+# matching the Hyprland session's wallust look (same wallpaper → same pink/blue tones).
+
+[theme]
+mode = "dark"
+shell_mode = "follow"
+source = "wallpaper"
+wallpaper_scheme = "faithful"
+pure_black_dark = false
+sync_color_scheme = true

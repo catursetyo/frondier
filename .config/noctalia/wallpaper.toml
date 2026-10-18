@@ -1,0 +1,5 @@
+# frondier — wallpaper source directory (same as the Hyprland session's $wallDIR)
+
+[wallpaper]
+enabled = true
+directory = "/home/caur/Pictures/wallpapers"

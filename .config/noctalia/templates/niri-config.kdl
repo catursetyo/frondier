@@ -1,0 +1,266 @@
+// frondier — niri config (Noctalia shell)
+// ⚠ GENERATED FILE — do not edit directly!
+// Source of truth: ~/.config/noctalia/templates/niri-config.kdl
+// (rendered by Noctalia app-theming; border colors follow the wallpaper palette)
+//
+// Ported from JaKooLit Hyprland dots (UserKeybinds.conf / Keybinds.conf).
+// Base: niri v26.04 default binds, adjusted for Noctalia IPC + personal keys.
+
+///////////////////////////// Autostart /////////////////////////////
+
+spawn-at-startup "noctalia"
+
+
+///////////////////////////// Misc /////////////////////////////
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// Hotkey overlay (Mod+Shift+/) still shows at startup — remove the next block to disable.
+hotkey-overlay {
+    // skip-at-startup
+}
+
+///////////////////////////// Rules (docs.noctalia.dev — niri) /////////////////////////////
+
+// Floating Noctalia settings window
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { fixed 1080; }
+    default-window-height { fixed 920; }
+}
+
+// Floating Firefox Picture-in-Picture
+window-rule {
+    match title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// Required so notification actions / window activation from Noctalia work
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+// Wallpaper: stationary (Option 2). Requires Noctalia Settings -> Niri -> backdrop DISABLED.
+layer-rule {
+    match namespace="^noctalia-wallpaper"
+    place-within-backdrop true
+}
+layout {
+    background-color "transparent"
+    // Focus indicator: thin ring, only drawn on the FOCUSED window
+    // (inactive = fully transparent). Compositor-drawn outside the window
+    // surface — proven not to interfere with blur/transparency.
+    // Color follows the wallpaper palette via Noctalia template placeholder.
+    focus-ring {
+        width 2
+        active-color "#a0a0a026"
+        inactive-color "#00000000"
+    }
+    // Dynamic gradient border removed on request (2026-10-18).
+    // To re-enable: delete the `off` line below and add, e.g.
+    //   active-gradient from="<palette-primary>" to="<palette-tertiary>" angle=45 relative-to="window"
+    // (colors come from the wallpaper palette via Noctalia template placeholders)
+    border {
+        off
+    }
+}
+
+// Rounded corners (small radius keeps content clipping minimal).
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+// Blur (niri 26.04+)
+window-rule {
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+layer-rule {
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+    background-effect {
+        xray false
+    }
+}
+
+layer-rule {
+    match namespace="noctalia-window-switcher"
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+blur {
+    passes 2
+    offset 3.0
+    noise 0.03
+    saturation 1.0
+}
+
+///////////////////////////// Binds /////////////////////////////
+
+binds {
+    // ── Noctalia IPC (docs.noctalia.dev) ──
+    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+    // Super tap (modifier-only) → launcher. niri can't bind modifiers alone;
+    // keyd remaps a Super tap to ScrollLock (this keymap has NO F13 keysym —
+    // keycode 183/`<I183>` is unassigned here — and Scroll_Lock is verified
+    // mapped: `key <SCLK> { [ Scroll_Lock ] };`).
+    Scroll_Lock { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }      // was RofiSearch in Hyprland -> Mod+Alt+S
+    Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }              // displaced default consume-window-into-column (covered by Mod+BracketLeft)
+    Alt+Tab { spawn-sh "noctalia msg window-switcher hold"; }
+    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
+    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
+
+    // ── Ported personal binds (UserKeybinds.conf) ──
+    Mod+Return { spawn "kitty"; }                                       // launch terminal
+    Mod+T { spawn "thunar"; }                                           // files (niri default terminal bind replaced; terminal = Mod+Return)
+    Mod+V { spawn "code" "--disable-gpu"; }                             // editor (default toggle-window-floating -> Mod+Ctrl+V)
+    Mod+C { spawn "firefox"; }                                          // browser (default center-column -> Mod+Shift+C)
+    Mod+Shift+O { spawn "/home/caur/.config/scripts/ZshChangeTheme.sh"; }
+    Mod+Shift+I { spawn "/home/caur/.config/scripts/mpd.sh"; } // default move-workspace-up remains on Mod+Shift+Page_Up
+    Alt+Space { spawn "/home/caur/.config/scripts/movie.sh"; }
+    Mod+Alt+E { spawn "/home/caur/.config/scripts/RofiEmoji.sh"; }
+    Mod+Alt+S { spawn "/home/caur/.config/scripts/RofiSearch.sh"; }
+    Mod+Alt+V { spawn-sh "noctalia msg panel-toggle clipboard"; }        // native Noctalia clipboard (rofi ClipManager retired, still in frondier/scripts)
+    Mod+Shift+M { spawn "/home/caur/.config/scripts/RofiBeats.sh"; }
+    Mod+W { spawn-sh "noctalia msg wallpaper-random"; }                 // native IPC (old WallpaperSelect.sh restarted waybar via WallustSwww); picker lives in Noctalia Settings
+    Ctrl+Alt+W { spawn-sh "noctalia msg wallpaper-random"; }            // same action, kept for muscle memory
+    Ctrl+Alt+P { spawn "/home/caur/.config/scripts/Wlogout.sh"; }
+    Ctrl+Alt+L { spawn-sh "noctalia msg screen-lock"; }                 // replaces hyprlock LockScreen.sh
+    Super+Alt+L { spawn-sh "noctalia msg screen-lock"; }                // niri default was swaylock
+
+    // ── Niri core (v26.04 default set) ──
+    Mod+Shift+Slash { show-hotkey-overlay; }
+    Super+Alt+S { spawn-sh "pkill orca || exec orca"; }
+    XF86AudioMicMute { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioPlay { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop { spawn-sh "playerctl stop"; }
+    XF86AudioPrev { spawn-sh "playerctl previous"; }
+    XF86AudioNext { spawn-sh "playerctl next"; }
+    Mod+O { toggle-overview; }
+    Mod+Q { close-window; }
+    Mod+Left { focus-column-left; }
+    Mod+Down { focus-window-down; }
+    Mod+Up { focus-window-up; }
+    Mod+Right { focus-column-right; }
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+    Mod+Ctrl+Left { move-column-left; }
+    Mod+Ctrl+Down { move-window-down; }
+    Mod+Ctrl+Up { move-window-up; }
+    Mod+Ctrl+Right { move-column-right; }
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+J { move-window-down; }
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+L { move-column-right; }
+    Mod+Home { focus-column-first; }
+    Mod+End { focus-column-last; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End { move-column-to-last; }
+    Mod+Shift+Left { focus-monitor-left; }
+    Mod+Shift+Down { focus-monitor-down; }
+    Mod+Shift+Up { focus-monitor-up; }
+    Mod+Shift+Right { focus-monitor-right; }
+    Mod+Shift+H { focus-monitor-left; }
+    Mod+Shift+J { focus-monitor-down; }
+    Mod+Shift+K { focus-monitor-up; }
+    Mod+Shift+L { focus-monitor-right; }
+    Mod+Shift+Ctrl+Left { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+Down { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+Up { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+J { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+K { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+Page_Up { focus-workspace-up; }
+    Mod+U { focus-workspace-down; }
+    Mod+I { focus-workspace-up; }
+    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
+    Mod+Ctrl+Page_Up { move-column-to-workspace-up; }
+    Mod+Ctrl+U { move-column-to-workspace-down; }
+    Mod+Ctrl+I { move-column-to-workspace-up; }
+    Mod+Shift+Page_Down { move-workspace-down; }
+    Mod+Shift+Page_Up { move-workspace-up; }
+    Mod+Shift+U { move-workspace-down; }
+    Mod+WheelScrollDown { focus-workspace-down; }
+    Mod+WheelScrollUp { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp { move-column-to-workspace-up; }
+    Mod+WheelScrollRight { focus-column-right; }
+    Mod+WheelScrollLeft { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft { move-column-left; }
+    Mod+Shift+WheelScrollDown { focus-column-right; }
+    Mod+Shift+WheelScrollUp { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp { move-column-left; }
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    Mod+BracketLeft { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Period { expel-window-from-column; }
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-column-width-back; }
+    Mod+Ctrl+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+M { maximize-window-to-edges; }
+    Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+Shift+C { center-column; }                                      // relocated (Mod+C = browser)
+    Mod+Ctrl+C { center-visible-columns; }
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Ctrl+V { toggle-window-floating; }                              // relocated (Mod+V = editor)
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+Alt+W { toggle-column-tabbed-display; }                         // relocated (Mod+W = wallpaper)
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+    Mod+Escape { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Shift+E { quit; }
+    Ctrl+Alt+Delete { quit; }
+    Mod+Shift+P { power-off-monitors; }
+}
+
+// ── Legacy Hyprland binds NOT ported (compositor-specific) ──
+// Mod+Shift+Return / Mod+Z      pyprland dropdown term / zoom   (pyprland is Hyprland-only)
+// Mod+Alt+O                     toggle opacity                  (hyprctl)
+// Mod+Shift+B / Mod+Alt+L / Mod+Shift+G   blur / layout / gamemode (hyprctl scripts)
+// Mod+Alt+R                     Refresh.sh                      (waybar/swaync/rofi restart — Noctalia hot-reloads)
+// Mod+H                         KeyHints.sh                     (documents Hyprland keybinds — obsolete here)
+// Mod+E                         QuickEdit.sh                    (edits Hyprland config)
+// Super (release) / Mod+D       rofi drun launcher              (Noctalia launcher = Mod+Space / Super-tap via keyd)
+// Mod+Shift+W                   WallpaperEffects.sh             (imagemagick + wallust pipeline — Hyprland-specific; random wallpaper = Mod+W)
