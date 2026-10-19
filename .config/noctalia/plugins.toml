@@ -1,0 +1,4 @@
+# frondier — noctalia plugins
+
+[plugins]
+enabled = ["ahmedhossamdev/sticky-notes"]

@@ -10,6 +10,10 @@
 
 spawn-at-startup "noctalia"
 
+// Polkit auth agent (polkit-kde's autostart file is OnlyShowIn=KDE, so niri
+// never spawns it via XDG autostart — spawn it explicitly)
+spawn-at-startup "/usr/libexec/kf6/polkit-kde-authentication-agent-1"
+
 
 ///////////////////////////// Misc /////////////////////////////
 
@@ -126,6 +130,7 @@ binds {
     Mod+V { spawn "code" "--disable-gpu"; }                             // editor (default toggle-window-floating -> Mod+Ctrl+V)
     Mod+C { spawn "firefox"; }                                          // browser (default center-column -> Mod+Shift+C)
     Mod+Alt+V { spawn-sh "noctalia msg panel-toggle clipboard"; }        // native Noctalia clipboard (rofi ClipManager retired, still in frondier/scripts)
+    Mod+Alt+N { spawn "noctalia" "msg" "panel-toggle" "ahmedhossamdev/sticky-notes:panel" "new-note"; }   // sticky notes quick capture (community plugin)
     Mod+W { spawn-sh "noctalia msg wallpaper-random"; }                 // native IPC (old WallpaperSelect.sh restarted waybar via WallustSwww); picker lives in Noctalia Settings
     Ctrl+Alt+W { spawn-sh "noctalia msg wallpaper-random"; }            // same action, kept for muscle memory
     Ctrl+Alt+P { spawn "/home/caur/.config/scripts/Wlogout.sh"; }
