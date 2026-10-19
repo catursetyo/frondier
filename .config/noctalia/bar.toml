@@ -11,7 +11,7 @@ padding = 35
 position = "left"
 radius_bottom_left = 0
 radius_top_left = 0
-start = [ "wallpaper", "workspaces", "cpu", "ram", "temp" ]
+start = [ "mpvpaper", "wallpaper", "workspaces", "cpu", "ram", "temp" ]
 thickness = 55
 widget_spacing = 11
 
@@ -93,3 +93,9 @@ transparency_mode = "solid"
 
 [widget.bar]
 type = "ahmedhossamdev/sticky-notes:bar"
+
+[plugin_settings."noctalia/mpvpaper"]
+auto_pause = "max"
+
+[widget.mpvpaper]
+type = "noctalia/mpvpaper:mpvpaper"
