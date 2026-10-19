@@ -260,14 +260,3 @@ binds {
     Ctrl+Alt+Delete { quit; }
     Mod+Shift+P { power-off-monitors; }
 }
-
-// ── Legacy Hyprland binds NOT ported (compositor-specific) ──
-// Mod+Shift+Return / Mod+Z      pyprland dropdown term / zoom   (pyprland is Hyprland-only)
-// Mod+Alt+O                     toggle opacity                  (hyprctl)
-// Mod+Shift+B / Mod+Alt+L / Mod+Shift+G   blur / layout / gamemode (hyprctl scripts)
-// Mod+Alt+R                     Refresh.sh                      (waybar/swaync/rofi restart — Noctalia hot-reloads)
-// Mod+H                         KeyHints.sh                     (documents Hyprland keybinds — obsolete here)
-// Mod+E                         QuickEdit.sh                    (edits Hyprland config)
-// Super (release) / Mod+D       rofi drun launcher              (Noctalia launcher = Mod+Space / Super-tap via keyd)
-// Mod+Alt+E/S/V, Mod+Shift+M/O/I, Alt+Space   rofi-based menus (retired) (emoji/search/clipboard/beats/mpd/movie/zsh-theme) — retired with rofi removal
-// Mod+Shift+W                   WallpaperEffects.sh             (imagemagick + wallust pipeline — Hyprland-specific; random wallpaper = Mod+W)

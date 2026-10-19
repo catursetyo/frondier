@@ -1,6 +1,4 @@
 # frondier — zsh configuration (template)
-# Personal/sensitive values (API keys, machine-specific paths, private aliases)
-# belong in ~/.zshrc.local (NOT tracked by git) — sourced at the end of this file.
 
 # ========================
 # >> Environment Setup
@@ -92,7 +90,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # ========================
-# >> Personal layer (gitignored)
-# API keys, machine-specific PATHs, private aliases go in ~/.zshrc.local
+# >> Personal layer
 # ========================
-[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"

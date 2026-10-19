@@ -1,5 +1,5 @@
+# frondier — wlogout launcher
 #!/bin/bash
-# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 
 # wlogout (Power, Screen Lock, Suspend, etc)
 

@@ -13,7 +13,7 @@ have() { command -v "$1" >/dev/null 2>&1; }
 
 section "1. Core session (official Fedora repos)"
 sudo dnf install -y niri noctalia polkit-kde kitty wallust wlogout mpv \
-     thunar starship yazi btop fastfetch nvim newsboat zathura \
+     thunar starship yazi btop fastfetch nvim newsboat zathura eza zoxide fzf \
      grim slurp swappy wl-clipboard imagemagick
 
 section "2. Fonts: Iosevka Nerd Font (terminal & bar)"
