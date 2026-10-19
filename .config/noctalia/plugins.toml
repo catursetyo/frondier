@@ -1,4 +1,4 @@
 # frondier — noctalia plugins
 
 [plugins]
-enabled = ["ahmedhossamdev/sticky-notes"]
+enabled = [ "ahmedhossamdev/sticky-notes", "noctalia/mpvpaper" ]
