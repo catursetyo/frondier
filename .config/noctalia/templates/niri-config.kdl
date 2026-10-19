@@ -24,6 +24,14 @@ hotkey-overlay {
     // skip-at-startup
 }
 
+// Hover over a window → it becomes the focused/active window (keyboard
+// binds and Mod+arrows keep working as usual; also works across monitors).
+// Companion option (off): warp-mouse-to-focus — moves the CURSOR when focus
+// changes via keyboard. Enable only if you want the inverse behavior.
+input {
+    focus-follows-mouse
+}
+
 ///////////////////////////// Rules (docs.noctalia.dev — niri) /////////////////////////////
 
 // Floating Noctalia settings window
