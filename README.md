@@ -1,12 +1,12 @@
 # frondier
 
-Personal dotfiles for **Fedora 43** on the machine `fedorawr`.
+Personal dotfiles for **Fedora 44** on the machine `fedorawr`.
 Desktop session: **niri + Noctalia**.
 
 ## Architecture
 
 Everything is linked into `$HOME` via symlinks: `~/.config/<app> -> repo/.config/<app>`.
-Hyprland caches its config at startup, but niri hot-reloads — edit and save, done.
+niri hot-reloads — edit and save, done.
 
 Three moving parts:
 
@@ -25,15 +25,21 @@ Three moving parts:
 
 ## Dependencies
 
+**Easiest path: `./setup.sh`** — installs everything below (idempotent, safe to re-run),
+handles copr/source-build fallbacks, sets up keyd, then hands off to `./install.sh`.
+
 | Package | Source | Role |
 |---|---|---|
-| `niri` 26.04+ | Fedora updates | compositor |
-| `noctalia-shell-v5` | copr `pm4rcin/Hyprland` (fc43 build) or official repo (F44+) | desktop shell |
-| `keyd` | copr `alternateved/keyd` | Super-tap remap (`/etc/keyd/default.conf`) |
+| `niri` | Fedora 44 repos | compositor |
+| `noctalia` (5.3+) | Fedora 44 official repo | desktop shell (bar, launcher, panels, wallpaper, lock) |
+| `keyd` | copr `alternateved/keyd` (source-build fallback) | Super-tap remap (`/etc/keyd/default.conf`) |
+| `mpvpaper` | copr `solopasha/hyprland` (source-build fallback) | video wallpaper (noctalia/mpvpaper plugin) |
 | `polkit-kde` | Fedora repos | polkit auth dialogs (auto-starts via XDG autostart) |
 | `wallust` | Fedora repos | kitty/zathura/rmpc colors (run manually) |
+| Iosevka Nerd Font | GitHub release (auto-downloaded by setup.sh) | terminal & bar font |
 
-Fonts: **Inter** and a **Nerd Font**.
+Apps matching the configs (also installed by setup.sh): `thunar starship yazi btop
+fastfetch nvim newsboat zathura mpv grim slurp swappy wl-clipboard imagemagick`.
 
 Session-level plumbing (env import, portals, XDG autostart) is handled by
 `niri-session` + the packaged `niri-portals.conf` — nothing to configure.
@@ -43,5 +49,5 @@ Session-level plumbing (env import, portals, XDG autostart) is handled by
 ```bash
 git clone https://github.com/catursetyo/frondier.git
 cd frondier
-./install.sh
+./setup.sh      # dependencies + dotfiles symlinks
 ```
