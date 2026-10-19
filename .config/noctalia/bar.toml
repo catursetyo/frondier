@@ -15,14 +15,6 @@ start = [ "wallpaper", "workspaces", "cpu", "ram", "temp" ]
 thickness = 55
 widget_spacing = 11
 
-[calendar]
-enabled = true
-
-    [calendar.account.myits]
-    name = "MyITS Classroom"
-    server_url = "https://classroom.its.ac.id/calendar/export_execute.php?userid=1177&authtoken=93233deae80daf4c181c3ec74d4370426a441294&preset_what=all&preset_time=custom"
-    type = "ics"
-
 [location]
 address = "Surabaya, Indonesia"
 

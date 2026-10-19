@@ -49,5 +49,5 @@ Session-level plumbing (env import, portals, XDG autostart) is handled by
 ```bash
 git clone https://github.com/catursetyo/frondier.git
 cd frondier
-./setup.sh      # dependencies + dotfiles symlinks
+./setup.sh
 ```
