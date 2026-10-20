@@ -1,7 +1,6 @@
 # frondier
 
-Personal dotfiles for **Fedora 44** on the machine `fedorawr`.
-Desktop session: **niri + Noctalia**.
+Personal dotfiles for **Fedora 44** using **niri + Noctalia**.
 
 ## Architecture
 
@@ -51,3 +50,7 @@ git clone https://github.com/catursetyo/frondier.git
 cd frondier
 ./setup.sh
 ```
+
+## References
+
+[Kitty config file](https://github.com/NischalDawadi/Hyprlust)
