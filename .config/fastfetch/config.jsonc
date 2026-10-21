@@ -51,7 +51,7 @@
         {
             "key": "│ {#33}󰍛 cpu     {#keys}│",
             "type": "cpu",
-            "showPeCoreCount": true
+            "format": "{brand}"
         },
         {
             "key": "│ {#34}󰉉 disk    {#keys}│",

@@ -4,3 +4,7 @@
 [theme.templates.user.niri]
 input_path = "/home/caur/.config/noctalia/templates/niri-config.kdl"
 output_path = "/home/caur/.config/niri/config.kdl"
+
+[theme.templates.user.kitty_colors]
+input_path = "/home/caur/.config/noctalia/templates/kitty-colors-template.conf"
+output_path = "/home/caur/.config/kitty/kitty-colors.conf"
