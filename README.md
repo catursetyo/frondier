@@ -42,6 +42,20 @@ fastfetch nvim newsboat zathura mpv grim slurp swappy wl-clipboard imagemagick`.
 Session-level plumbing (env import, portals, XDG autostart) is handled by
 `niri-session` + the packaged `niri-portals.conf` — nothing to configure.
 
+## Terminal color modes
+
+Kitty colors can follow the wallpaper or use a fixed scheme:
+
+```bash
+~/.config/scripts/kitty-colors.sh dynamic              # follow the wallpaper palette (default)
+~/.config/scripts/kitty-colors.sh static tokyo-night   # pin a static scheme
+~/.config/scripts/kitty-colors.sh list                 # available static themes
+```
+
+Static themes live in `.config/kitty/static-themes/` — drop a file there to add your own.
+In dynamic mode the colors re-render automatically on every wallpaper change; in static
+mode they are immune to it.
+
 ## Usage
 
 ```bash
