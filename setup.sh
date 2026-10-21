@@ -52,30 +52,10 @@ else
     echo "OK    keyd configured (Super-tap → ScrollLock → launcher)"
 fi
 
-section "4. mpvpaper (video wallpaper) — copr solopasha/hyprland or source"
-if have mpvpaper; then
-    echo "OK    mpvpaper already installed"
-else
-    sudo dnf copr enable -y solopasha/hyprland 2>/dev/null || true
-    if sudo dnf install -y mpvpaper 2>/dev/null; then
-        echo "OK    mpvpaper installed (copr)"
-    else
-        echo ">>    copr has no chroot for this release — building from source"
-        sudo dnf install -y mpv-devel wayland-devel wayland-protocols-devel \
-             meson ninja-build gcc 2>/dev/null || true
-        rm -rf /tmp/mpvpaper-src
-        git clone --depth 1 https://github.com/GhostNaN/mpvpaper /tmp/mpvpaper-src
-        (cd /tmp/mpvpaper-src \
-            && meson setup build --prefix /usr/local \
-            && ninja -C build && sudo ninja -C build install)
-        echo "OK    mpvpaper installed (source)"
-    fi
-fi
-
-section "5. Dotfiles (symlinks into \$HOME)"
+section "4. Dotfiles (symlinks into \$HOME)"
 "$DOTDIR/install.sh"
 
-section "6. Post-install notes"
+section "5. Post-install notes"
 cat <<'NOTES'
 - Re-login to start the niri + Noctalia session.
 - Noctalia: Settings → Plugins → confirm "sticky-notes" is enabled

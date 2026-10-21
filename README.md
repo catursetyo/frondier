@@ -32,7 +32,6 @@ handles copr/source-build fallbacks, sets up keyd, then hands off to `./install.
 | `niri` | Fedora 44 repos | compositor |
 | `noctalia` (5.3+) | Fedora 44 official repo | desktop shell (bar, launcher, panels, wallpaper, lock) |
 | `keyd` | copr `alternateved/keyd` (source-build fallback) | Super-tap remap (`/etc/keyd/default.conf`) |
-| `mpvpaper` | copr `solopasha/hyprland` (source-build fallback) | video wallpaper (noctalia/mpvpaper plugin) |
 | `polkit-kde` | Fedora repos | polkit auth dialogs (auto-starts via XDG autostart) |
 | `wallust` | Fedora repos | kitty/zathura/rmpc colors (run manually) |
 | Iosevka Nerd Font | GitHub release (auto-downloaded by setup.sh) | terminal & bar font |

@@ -11,9 +11,17 @@ padding = 35
 position = "left"
 radius_bottom_left = 0
 radius_top_left = 0
-start = [ "mpvpaper", "wallpaper", "workspaces", "cpu", "ram", "temp" ]
+start = [ "wallpaper", "workspaces", "cpu", "ram", "temp" ]
 thickness = 55
 widget_spacing = 11
+
+[calendar]
+enabled = true
+
+    [calendar.account.myits]
+    name = "MyITS Classroom"
+    server_url = "https://classroom.its.ac.id/calendar/export_execute.php?userid=1177&authtoken=93233deae80daf4c181c3ec74d4370426a441294&preset_what=all&preset_time=custom"
+    type = "ics"
 
 [location]
 address = "Surabaya, Indonesia"
@@ -93,9 +101,3 @@ transparency_mode = "solid"
 
 [widget.bar]
 type = "ahmedhossamdev/sticky-notes:bar"
-
-[plugin_settings."noctalia/mpvpaper"]
-auto_pause = "max"
-
-[widget.mpvpaper]
-type = "noctalia/mpvpaper:mpvpaper"
