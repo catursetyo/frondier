@@ -51,7 +51,7 @@
         {
             "key": "│ {#33}󰍛 cpu     {#keys}│",
             "type": "cpu",
-            "format": "{brand}"
+            "format": "{name}"
         },
         {
             "key": "│ {#34}󰉉 disk    {#keys}│",
