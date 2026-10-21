@@ -5,6 +5,6 @@
 mode = "dark"
 shell_mode = "follow"
 source = "wallpaper"
-wallpaper_scheme = "m3-content"
+wallpaper_scheme = "faithful"
 pure_black_dark = false
 sync_color_scheme = true
